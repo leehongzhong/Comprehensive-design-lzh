@@ -1,0 +1,73 @@
+命名
+===========================
+
+`class` 与 `id` 的命名
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`class` 与 `id` 命名应字母小写，单词间以' - '分隔
+
+示例：
+
+.. code-block:: html
+   :linenos:
+
+   <!-- good -->
+   <div class="side-bar"></div>
+
+   <!-- bad -->
+   <div class="SIDEBAR"></div>
+
+
+
+`class` 与 `id` 命名应具有特定含义，不得以样式命名
+
+示例：
+
+.. code-block:: html
+   :linenos:
+
+   <!-- good -->
+   <div id="side"></div>
+
+   <!-- bad -->
+   <div id="left"></div>
+
+
+
+`id` 与 `class` 命名在避免冲突及表述清楚下尽量短
+
+示例：
+
+.. code-block:: html
+   :linenos:
+
+   <!-- good -->
+   <div id="nav"></div>
+
+   <!-- bad -->
+   <div id="navigation"></div>
+
+   <!-- good -->
+   <p class="comment"></p>
+
+   <!-- bad -->
+   <p class="com"></p>
+
+
+
+`id` 命名要唯一
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+解释：同一个页面中，不同的元素包含相同的 `id`，不符合 `id` 的属性含义。并且使用 `document.getElementById` 时可能导致难以追查的问题。
+
+
+
+
+禁止创建无样式信息的类 `class`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+解释：不允许 `class` 只用于选择某些元素， `class` 应该具有明确的语义和样式。否则容易导致 CSS class 泛滥。
+
+
+
+
+
+
+     

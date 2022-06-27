@@ -1,0 +1,73 @@
+注释与初始化
+=======================
+
+单行注释
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   // good
+   // 初始化项目
+   function init() {...}
+
+   //bad 
+   /* 初始化项目 */
+   function init() {...}
+   
+   function init() {...} //初始化项目
+
+
+多行注释
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   // good
+   /* 
+       初始化项目 
+       并获取数据
+   */
+   function init() {...}
+
+   //bad 
+   // 初始化项目
+   // 并获取数据
+   function init() {...}
+
+
+初始化
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+使用 `{}` 初始化对象字面量
+
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   // good
+   let obj = {};
+
+   // bad
+   let obj = new Object();
+
+
+使用 `[]` 初始化数组
+
+.. code-block:: javascript
+   :linenos:
+
+   // good
+   let obj = [];
+
+   // bad
+   let obj = new Array();
+
+    
+
+    
+
+    

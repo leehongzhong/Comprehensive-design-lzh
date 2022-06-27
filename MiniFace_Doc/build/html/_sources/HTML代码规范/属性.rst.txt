@@ -1,0 +1,88 @@
+属性
+=======================
+
+属性名
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+属性名使用小写字母
+
+示例：
+
+.. code-block:: html
+   :linenos:
+
+   <!-- good -->
+   <div color = "red">...</div>
+
+   <!-- bad -->
+   <div Color = "red">...</div>
+
+
+
+属性值
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+属性值用双引号，不允许使用单引号，不允许不使用引号。
+
+示例：
+
+.. code-block:: html
+   :linenos:
+
+   <!-- good -->
+   <script src="esl.js"></script>
+     
+   <!-- bad -->
+   <script src='esl.js'></script>
+   <script src=esl.js></script>
+
+
+
+`CSS` 和 `JavaScript` 的引入写法
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+引入 `CSS` 时需指明 `rel="stylesheet"`
+
+示例：
+
+.. code-block:: html
+   :linenos:
+
+   <link rel="stylesheet" href="page.css">
+
+
+引入 `CSS` 和 `JavaScript` 时无需指明 `type` 属性， `text/css` 和 `text/javascript` 是 `type` 的默认值。
+
+展现定义放于外部 `CSS` 中，行为定义放于外部 `JavaScript` 中，结构-样式-行为的代码分离，对于提高代码的可阅读性和维护性都有好处
+
+
+
+`CSS` 和 `JavaScript` 的引入位置
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+在页面渲染的过程中，新的CSS可能导致元素的样式重新计算和绘制，导致页面闪烁，所以需在 `head` 中引入页面需要的所有 `CSS` 资源。
+
+示例：
+
+.. code-block:: html
+   :linenos:
+
+   <head>
+       <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+       <title>HTML代码规范</title>
+   
+       <!-- 引入css文件 -->
+       <link rel="stylesheet" href="css/index.css">
+   </head>
+
+若将 `script` 语句放在页面中间将阻断页面的渲染，出于性能方面的考虑， `JavaScript` 语句放在页面末尾，或采用异步加载。
+
+示例：
+
+.. code-block:: html
+   :linenos:
+
+   <body>
+       <script src="init-behavior.js"></script>
+       <!-- 结尾 -->
+   </body>
+
+
+
+   

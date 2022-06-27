@@ -1,0 +1,119 @@
+标签
+==================
+
+标签名命名
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+标签名必须使用小写字母
+示例：
+
+.. code-block:: html
+   :linenos:
+
+   <!-- good -->
+   <p>Hello StyleGuide!</p>
+
+   <!-- bad -->
+   <P>Hello StyleGuide!</P>
+
+
+
+自闭合标签
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+在HTML5的规范中，自闭合标签不需要加斜杠，但是兼容加斜杠的写法，在这里我们统一自闭合标签不需要加斜杠
+
+示例：
+
+.. code-block:: html
+   :linenos:
+
+   <!-- good -->
+   <img src="media/p1.png" alt="">
+
+   <!-- bad -->
+   <img src="media/p1.png" alt=""/>
+
+
+
+闭合标签的省略
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+对 `HTML5` 中规定允许省略的闭合标签，不允许省略闭合标签
+
+示例：
+
+.. code-block:: html
+   :linenos:
+
+   <!-- good -->
+   <ul>
+       <li>first</li>
+       <li>second</li>
+   </ul>
+
+   <!-- bad -->
+   <ul>
+       <li>first
+       <li>second
+   </ul>
+
+
+
+标签的嵌套
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+标签使用必须符合标签嵌套规则，比如 `div` 不得置于 `p` 中,详细请参照标签嵌套规则
+
+
+
+标签的语义
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+HTML标签的使用应该遵循标签的语义
+
+下面是常见标签语义
+
+- p - 段落
+- h1,h2,h3,h4,h5,h6 - 层级标题
+- strong,em - 强调
+- ins - 插入
+- del - 删除
+- abbr - 缩写
+- code - 代码标识
+- cite - 引述来源作品的标题
+- q - 引用
+- blockquote - 一段或长篇引用
+- ul - 无序列表
+- ol - 有序列表
+- dl,dt,dd - 定义列表
+   
+
+示例：
+
+.. code-block:: html
+   :linenos:
+
+   <!-- good -->
+   <p>Esprima serves as an important <strong>building block</strong> for some JavaScript language tools.</p>
+
+   <!-- bad -->
+   <div>Esprima serves as an important <span class="strong">building block</span> for some JavaScript language tools.</div>
+
+
+   
+减少不必要的标签
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+标签的使用应尽量简洁，减少不必要的标签
+
+示例：
+
+.. code-block:: html
+   :linenos:
+
+   <!-- good -->
+   <img class="avatar" src="image.png">
+
+   <!-- bad -->
+   <span class="avatar">
+       <img src="image.png">
+   </span>
+
+
+
+   

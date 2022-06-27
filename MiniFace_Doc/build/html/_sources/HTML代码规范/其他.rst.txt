@@ -1,0 +1,50 @@
+其他规范
+=======================
+
+DOCTYPE声明
+~~~~~~~~~~~~~~~~~~~~~~~~~
+HTML 文件必须加上 DOCTYPE 声明，并统一使用 HTML5 的文档声明
+
+示例：
+
+.. code-block:: sh
+   :linenos:
+
+   <!DOCTYPE html>
+
+
+
+单行注释
+~~~~~~~~~~~~~~~~~~~~~~~~~
+示例：
+
+.. code-block:: html
+   :linenos:
+
+   <!-- good -->
+   <!-- Comment Text -->
+   <div>...</div>
+
+   <!-- bad -->
+   <div>...</div><!-- Comment Text -->
+   <div><!-- Comment Text -->
+   </div>
+
+
+
+多行注释
+~~~~~~~~~~~~~~~~~~~~~~~~~
+示例：
+
+.. code-block:: html
+   :linenos:
+   
+   <!-- Comment Text1 
+        Comment Text2         
+        Comment Text2 -->
+   <div>...</div>
+
+
+空行
+~~~~~~~~~~~~~~~~~~~~~~~~~
+为每个逻辑功能模块添加空行，文件最后保留空行，不要无缘无故添加空行

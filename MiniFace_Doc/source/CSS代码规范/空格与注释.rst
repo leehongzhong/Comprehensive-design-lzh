@@ -1,0 +1,102 @@
+空格与注释
+=====================
+
+空格
+~~~~~~~~~~~~~~~~~~~~~~
+选择器 与 '{' 之间必须包含空格
+
+示例：
+
+.. code-block:: sh
+   :linenos:
+
+   .selector {
+   }
+
+
+属性名与之后的 ' : ' 之间不允许包含空格， ' : ' 与属性值之间必须包含空格
+
+示例：
+
+.. code-block:: sh
+   :linenos:
+
+   margin: 0;
+
+
+
+列表型属性值书写在单行时，' , ' 后必须跟一个空格
+
+示例：
+
+.. code-block:: sh
+   :linenos:
+
+   font-family: Arial, sans-serif;
+
+
+
+' > '、' + '、' ~ ' 选择器的两边各保留一个空格
+
+示例：
+   
+.. code-block:: sh
+   :linenos:
+   
+   /* good */
+   .main > .nav {
+       padding: 10px;
+   }
+   
+   .main + .nav {
+       margin-left: 5px;
+   }
+   
+   .main ~ .nav {
+       background-color: #69C;
+   }
+   
+   /* bad */
+   .main>.nav {
+       padding: 10px;
+   }
+   
+   .main+.nav {
+       margin-left: 5px;
+   }
+   
+   .main~.nav {
+       background-color: #69C;
+   }
+
+
+单行注释
+~~~~~~~~~~~~~~~~~~~~~~
+示例：
+
+.. code-block:: sh
+   :linenos:
+
+    /* 注释 */
+    .selector{
+    }
+
+
+
+多行注释
+~~~~~~~~~~~~~~~~~~~~~~
+示例：
+
+.. code-block:: sh
+   :linenos:
+
+    /* 
+        注释 
+    */
+    .selector{
+    }
+
+
+
+
+

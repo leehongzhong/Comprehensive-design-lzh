@@ -1,0 +1,71 @@
+函数
+==================
+
+函数体
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+避免一个函数体过大，尽量拆分为功能清晰的单一函数
+
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   // good
+   function render() {
+       renderList();
+
+       renderNotice();
+   };
+
+   function renderList() {
+       // 渲染列表
+   };
+
+   function renderNotice(){
+       // 渲染公告
+   };
+
+   // bad 
+   function render() {
+       // 渲染列表的代码
+       ...
+       // 渲染公告的代码
+       ...
+   };
+
+
+函数参数
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+避免函数参数过多，可将多个参数用对象代替
+
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   // good
+   function showDialog(option) {
+       ...
+   };
+
+   // bad 
+   function showDialog(el, data, target, className, isShowClose) {
+       ...
+   };
+
+
+自执行函数
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+自执行函数使用()来包裹，避免返回不必要的值
+
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   (function test() {
+       ...
+   })();
+
+    
+    

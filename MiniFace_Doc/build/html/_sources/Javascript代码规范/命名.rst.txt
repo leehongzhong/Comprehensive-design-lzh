@@ -1,0 +1,91 @@
+命名
+========================
+
+常规变量命名为驼峰式命名
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   // good
+   let cityText = '北京';
+
+   let isNumber = false;
+
+   let hasSelectCity = true;
+
+   // bad 
+   let citytext = '北京';
+
+   let is_number = false;
+
+   let has_selectCity = true; 
+
+
+命名应具有特定含义
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   // good
+   let query;
+    
+   // bad
+   let q;
+
+
+`Boolean` 类型的变量或属性的命名
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`Boolean` 类型的变量或属性命名以 `is` / `has` 开头
+
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   // good
+   let isSelected = false;
+
+   let isShowCancel = false;
+
+   let hasHotel = false;
+
+   // bad 
+   let selected = false;
+
+   let showCancel = false;
+
+   let hotel = false;
+
+    
+私有属性的命名
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+使用下划线 _ 开头命名私有属性
+
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   // good
+   this._firstName = 'Panda';
+
+   // bad
+   this.__firstName__ = 'Panda';
+   
+   this.firstName_ = 'Panda';
+
+
+常量的命名
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+常量全大写，单词间用下划线连接
+
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   const MAX_COUNT = 10;

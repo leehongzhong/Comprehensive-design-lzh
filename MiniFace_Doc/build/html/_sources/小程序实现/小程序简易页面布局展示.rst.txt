@@ -1,0 +1,150 @@
+小程序简易页面布局展示
+==============================
+
+首页
+------------------------------
+
+.. figure:: image/4.png
+    :align: center
+    :alt: 首页
+
+
+讨论区
+-------------------------------
+
+加载状态
+
+.. figure:: image/5.png
+    :align: center
+    :alt: 加载状态
+
+
+论坛消息列表
+
+.. figure:: image/6.png
+    :align: center
+    :alt: 论坛消息列表
+
+
+发布论坛消息页面
+----------------------------------
+
+默认页面
+
+.. figure:: image/7.png
+    :align: center
+    :alt: 初始页面
+
+
+非法输入提示弹窗
+
+.. figure:: image/8.png
+    :align: center
+    :alt: 初始页面
+
+
+“我的”页面
+----------------------------------
+
+未登录状态
+
+.. figure:: image/9.png
+    :align: center
+    :alt: 未登录状态
+
+
+登录状态
+
+.. figure:: image/10.png
+    :align: center
+    :alt: 登录状态
+
+
+人脸比对结果展示
+----------------------------------
+
+默认状态
+
+.. figure:: image/11.png
+    :align: center
+    :alt: 默认状态
+
+ 
+比对结果
+
+.. figure:: image/12.png
+    :align: center
+    :alt: 比对结果
+
+
+人脸分析结果展示
+----------------------------------
+
+默认状态
+
+.. figure:: image/13.png
+    :align: center
+    :alt: 默认状态
+
+
+分析结果
+
+.. figure:: image/14.png
+    :align: center
+    :alt: 分析结果
+
+
+年龄改变结果展示
+----------------------------------
+
+默认状态
+
+.. figure:: image/15.png
+    :align: center
+    :alt: 默认状态
+
+    默认状态
+
+原图
+
+.. figure:: image/16-1.png
+    :align: center
+    :alt: 原图
+
+    原图
+
+结果
+
+.. figure:: image/16.png
+    :align: center
+    :alt: 结果
+
+    结果
+
+
+明星脸比对结果展示
+----------------------------------
+
+默认状态
+
+.. figure:: image/17.png
+    :align: center
+    :alt: 默认状态
+
+    默认状态
+
+
+.. figure:: image/18.png
+    :align: center
+    :alt: 默认状态
+
+    默认状态
+
+
+搜索结果
+
+.. figure:: image/19.png
+    :align: center
+    :alt: 搜索结果
+
+    搜索结果

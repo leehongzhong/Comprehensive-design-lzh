@@ -1,0 +1,192 @@
+前端调用
+============================
+
+
+小程序应用生命周期函数
+----------------------------
+
+应用的生命周期函数是指一个小程序从创建到销毁的一系列过程
+
+App()函数用来注册一个小程序。接受一个 Object参数，其指定小程序的生命周期回调等。App() 必须在 **app.js** 中调用，必须调用且只能调用一次。代码如下所示：
+
+.. code-block:: javascript
+    :linenos:
+
+    App({
+        onLaunch: function(options) {
+            // 监听小程序初始化。小程序初始化完成时（全局只触发一次）
+        },
+        onShow: function(options) {
+            // 监听小程序显示。小程序启动，或从后台进入前台显示时
+        },
+        onHide: function() {
+            // 监听小程序隐藏。小程序从前台进入后台时。
+        },
+        onError: function(msg) {
+            console.log(msg) // 错误监听函数。小程序发生脚本错误，或者 api 调用失败时触发，会带上错误信息
+        },
+        onPageNotFound: function(res) {
+            // 页面不存在监听函数。小程序要打开的页面不存在时触发，会带上页面信息回调该函数
+        },
+        globalData: ''
+    })
+
+
+- onLaunch:小程序初始化完成时触发，全局只触发一次
+- onShow:小程序初始化完成后或者小程序从后台进入前台显示，触发 onShow 方法，监听小程序显示
+- onHide:小程序从前台进入后台，触发 onHide 方法
+
+
+小程序页面生命周期函数
+------------------------------
+
+输入Page(Object)函数用来注册一个页面。接受一个 Object类型参数，其指定页面的初始数据、生命周期回调、事件处理函数等。
+
+.. code-block:: javascript
+    :linenos:
+
+    Page({
+        data: {
+            
+        },
+        onLoad: function(options) {
+            // 页面初始化 options为页面跳转所带来的参数
+        },
+        onReady: function() {
+            // 页面渲染完成
+        },
+        onShow: function() {
+            // 页面显示
+        },
+        onHide: function() {
+            // 页面隐藏
+        },
+        onUnload: function() {
+            // 页面关闭
+        },
+        onPullDownRefresh: function() {
+            // 页面相关事件处理函数--监听用户下拉动作
+        },
+        onReachBottom: function() {
+            // 页面上拉触底事件的处理函数
+        },
+        onShareAppMessage: function() {
+            // 用户点击右上角转发
+        }
+    })
+
+
+- onLoad: 页面加载。一个页面只会调用一次。参数可以获取wx.navigateTo和wx.redirectTo及中的 query。
+- onShow: 页面显示。每次打开页面都会调用一次。
+- onReady:页面初次渲染完成。一个页面只会调用一次，代表页面已经准备妥当，可以和视图层进行交互。
+- onHide: 页面隐藏。当navigateTo或底部tab切换时调用。
+- onUnload: 页面卸载。当redirectTo或navigateBack的时候调用。
+
+
+小程序业务事件处理函数
+------------------------------
+
+使用的业务逻辑是实现人脸比对
+
+上传图片并获取Url
+++++++++++++++++++++++++++++++
+
+.. code-block:: javascript
+    :linenos:
+
+    uploadFirstImg: function (e) {
+        let that = this
+        wx.chooseImage({
+            count: 1,//上传图片最大数量
+            sourceType: ['album', 'camera'],
+            success: function (res) {
+                wx.cloud.uploadFile({
+                    cloudPath: "compare_img/" + Date.now() + ".png",
+                    filePath: res.tempFilePaths[0]
+                }).then(res1 => {
+                    wx.cloud.getTempFileURL({
+                        fileList: [{
+                            fileID: res1.fileID
+                        }]
+                    }).then(res2 => {
+                        // console.log(res2);
+                        that.setData({
+                            has_upload_first_img: true,
+                            first_image_url: res2.fileList[0].tempFileURL
+                        })
+
+                    })
+                }).catch(err => {
+                    console.log(err);
+                })
+            },
+            fail: function (err) {
+                console.log(err);
+            }
+        })
+    },
+
+
+函数uploadFirstImg是通过bindclick绑定在页面的一个按钮上面，点击按钮便会出发上面的函数。
+
+第2行的this指的是Page对象，也就是页面对象。用变量that保存Page对象，是为了后续调用 **setData** 函数，因为在特定回调函数使用 **this.setData** 时this指向会出错。
+
+使用wx.chooseImage函数选择图片，并获取图片的临时路径。获取成功后使用wx.cloud.uploadFile函数上传图片，并获取上传后的图片的FileId。通过FileId调用wx.cloud.getTempFileURL函数获取图片的下载链接。
+
+其中cloudPath是上传到云存储的路径，compare_img是在云开发控制台创建的用于存储对比人脸的文件夹，Date.now()获取当前时间戳以减少重名冲突，filePath是选择的图片的临时路径。
+
+获取上传图片的下载链接成功后，调用 **that.setData** 将图片的下载链接赋值给first_image_url，并将has_upload_first_img设置为true。这样前端就可以显示出以及上传的图片。
+
+上传第二张图片的函数与上传第一张的函数类似，这里不再赘述
+
+
+调用人脸比对云函数
+++++++++++++++++++++++++++++++
+
+.. code-block:: javascript
+    :linenos:
+
+    callCloudFunc: function () {
+        let that = this
+        wx.showLoading({
+            title: '正在比对中',
+        })
+        if (this.data.has_upload_second_img && this.data.has_upload_first_img) {
+            wx.cloud.callFunction({
+                name: 'faceRecApi',
+                data: {
+                    UrlA: that.data.first_image_url,
+                    UrlB: that.data.second_image_url
+                },
+                success: function (res) {
+                    console.log(res);
+                    that.setData({
+                        score: res.result.Score.toFixed(5)
+                    })
+                    wx.hideLoading()
+                    wx.showToast({
+                        title: '比对成功',
+                        icon: 'success'
+                    })
+                },
+                fail: function (err) {
+                    console.log('error', err);
+                    wx.hideLoading()
+                }
+            })
+
+        } else {
+            wx.showToast({
+                title: '请选择两张图片后再进行比对',
+                icon: 'none'
+
+            })
+        }
+    },
+
+
+前面一节中，我们创建了人脸比对的云函数，并将其命名为 **faceRecApi** ，这个函数的调用参数是 **UrlA** 和 **UrlB** ，这两个参数分别是两张图片的下载链接。
+
+调用成功回调函数中，我们将比对结果的分数赋值给 **score** ，并调用 **wx.showToast** 显示比对成功提示。此时被赋值的 **score** 将会截取小数点前五位显示在界面上。
+
+

@@ -1,0 +1,76 @@
+属性
+=======================
+
+
+属性的定义
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+属性的定义必须另起一行
+
+示例：
+
+.. code-block:: sh
+   :linenos:
+   
+   /* good */
+   .selector {
+       margin: 0;
+       padding: 0;
+   }
+
+   /* bad */
+   .selector { margin: 0; padding: 0; }
+
+
+属性定义后必须以分号结尾
+
+示例：
+
+.. code-block:: sh
+   :linenos:
+
+   /* good */
+   .selector {
+       margin: 0;
+   }
+
+   /* bad */
+   .selector {
+       margin: 0
+   }
+
+
+
+属性的缩写
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+在可以使用缩写的情况下，尽量使用属性缩写
+
+示例：
+
+.. code-block:: sh
+   :linenos:
+
+   /* good */
+   .post {
+       font: 12px/1.5 arial, sans-serif;
+   }
+
+   /* bad */
+   .post {
+       font-family: arial, sans-serif;
+       font-size: 12px;
+       line-height: 1.5;
+   }
+
+
+
+属性的书写顺序
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+属性在书写时，应按功能进行分组，并以 **Formatting Model（布局方式、位置） > Box Model（尺寸） > Typographic（文本相关） > Visual（视觉效果）** 的顺序书写，以提高代码的可读性
+
+- Formatting Model 相关属性包括： `position` / `top` / `right` / `bottom` / `left` / `float` / `display` / `overflow` 等
+- Box Model 相关属性包括： `border` / `margin` / `padding` / `width` / `height` 等
+- Typographic 相关属性包括： `font` / `line-height` / `text-align` / `word-wrap` 等
+- Visual 相关属性包括： `background` / `color` / `transition` / `list-style` 等
+
+另外，如果包含 `content` 属性，应放在最前面
+

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.2. Sphinx的基本使用 &mdash; MiniFace  文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="prev" title="1.1. 为何使用Sphinx" href="%E4%B8%BA%E4%BD%95%E4%BD%BF%E7%94%A8Sphinx.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> MiniFace
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Sphinx的使用</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="%E4%B8%BA%E4%BD%95%E4%BD%BF%E7%94%A8Sphinx.html">1.1. 为何使用Sphinx</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.2. Sphinx的基本使用</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MiniFace</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">1. </span>Sphinx的使用</a> &raquo;</li>
+      <li><span class="section-number">1.2. </span>Sphinx的基本使用</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/文档/Sphinx的基本使用.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sphinx">
+<h1><span class="section-number">1.2. </span>Sphinx的基本使用<a class="headerlink" href="#sphinx" title="永久链接至标题">¶</a></h1>
+<section id="python3">
+<h2><span class="section-number">1.2.1. </span>安装python3<a class="headerlink" href="#python3" title="永久链接至标题">¶</a></h2>
+<p>windows直接到python官网下载安装</p>
+</section>
+<section id="id1">
+<h2><span class="section-number">1.2.2. </span>安装sphinx<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>windows下使用如下指令安装：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>pip install sphinx
+<span class="linenos">2</span><span class="c1">#国内用户推荐使用清华源安装，使用-i指定源</span>
+<span class="linenos">3</span>py -3 -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple sphinx
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2><span class="section-number">1.2.3. </span>使用模板创建sphinx文档<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>本项目的sphinx已适配好支持markdown、默认的readthedoc主题等内容。</p>
+<p>如果是要编写新的书籍，推荐直接使用本项目文档作为模版，修改conf.py文件的配置即可改变项目的名字、主题之类的内容。</p>
+<p>文档集的根目录叫 source directory. 该目录也包含了 Sphinx 的配置文件 conf.py, 在这里你可以配置Sphinx各个方面，使Sphinx按照你的要求读取源文件并创建文档.</p>
+<p>Sphinx 有个脚本叫做 sphinx-quickstart ,它可以帮你建立源目录及默认配置文件 conf.py ，它通过几个简单的问题获取一些有用的配置值. 你仅需要运行</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>sphinx-quickstart
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2><span class="section-number">1.2.4. </span>定义文档结构<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>假定你已经运行了 sphinx-quickstart . 它创建了源目录，包含 <strong>conf.py</strong> 及一份主文档 <strong>index.rst</strong> (如果你接受了默认选项).主文档 master document 的主要功能是被 转换成欢迎页, 它包含一个目录表（ “table of contents tree”或者 toctree ). Sphinx 主要功能是使用 reStructuredText, 把许多文件组织成一份结构合理的文档.</p>
+<p>toctree 指令初始为空, 如下:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+<span class="linenos">2</span>    <span class="nc">:maxdepth:</span> 2
+</pre></div>
+</div>
+<p>你可以在 content 的位置添加文档列表:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+<span class="linenos">2</span>    <span class="nc">:maxdepth:</span> 2
+<span class="linenos">3</span>
+<span class="linenos">4</span>    intro
+<span class="linenos">5</span>    tutorial
+<span class="linenos">6</span><span class="cp">    ...</span>
+</pre></div>
+</div>
+<p>reStructuredText 导读</p>
+<ul class="simple">
+<li><p>toctree 是 reStructuredText的 directive （指令）, 一种用途十分广泛的块标记. 定义了参数、选项及目录.</p></li>
+<li><p>Arguments 直接在双冒号后面给出指令的名字. 每个指令都有不定个数的参数.</p></li>
+<li><p>Options 在参数后以”字段列表”的形式给出. 如 maxdepth 是 toctree 指令的选项之一.</p></li>
+<li><p>Content 具体内容,在选项或参数的后面，隔开一个空行. 每个指令后面都跟着不同作用的内容.</p></li>
+<li><p>共同的约定是 内容与选项一般有相同的缩进 .</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2><span class="section-number">1.2.5. </span>运行创建工具<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>现在已经添加了一些文件,下面可以创建文档了. 创建工具 sphinx-build , 使用方式</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>sphinx-build -b html sourcedir builddir
+</pre></div>
+</div>
+<p>sourcedir 是源目录 source directory , builddir 则是放置生成的文档的根目录. -b 是创建工具的选项;这个例子创建HTML文件.
+而且, sphinx-quickstart 脚本创建的 Makefile 和
+make.bat 使操作更容易，仅需运行</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>make html
+</pre></div>
+</div>
+<p>创建 HTML 在设定好的目录里. 执行 make 将不需要任何参数.
+完成创建后将会在 build 目录下生成一个 html 目录.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="%E4%B8%BA%E4%BD%95%E4%BD%BF%E7%94%A8Sphinx.html" class="btn btn-neutral float-left" title="1.1. 为何使用Sphinx" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, leehongzhong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

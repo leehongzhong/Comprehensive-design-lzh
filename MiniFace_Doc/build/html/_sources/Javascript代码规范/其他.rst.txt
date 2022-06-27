@@ -1,0 +1,108 @@
+其他规范
+=====================
+
+
+访问对象属性
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+统一使用 '[]' 来访问对象属性
+
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   let luke = {
+       jedi: true,
+       age: 28
+   };
+
+   let isJedi = luke['jedi'];
+
+
+
+
+字符串
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+使用单引号包裹字符串
+
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   let name = 'Bob Parr';
+
+
+变量的声明
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+使用 `let` 声明每一个变量
+
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   // good
+   let goSportsTeam = true;
+
+   // bad
+   goSportsTeam = true;
+
+
+   
+else语句规范
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+把 else 放在 if 代码块关闭括号的同一行
+
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   if (test) {
+       thing1();
+
+       thing2();
+   } else {
+       thing3();
+   }
+    
+
+
+
+
+使用行尾逗号
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+示例；
+
+.. code-block:: javascript
+   :linenos:
+
+   // good
+   let story = [
+       once,
+       upon,
+       aTime
+   ];
+
+   // bad
+   let story = [
+       once
+     , upon
+     , aTime
+   ];
+
+
+在每一个语句后使用分号
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+示例：
+
+.. code-block:: javascript
+   :linenos:
+
+   // good
+   let name = 'Skywalker';
+
+   // bad
+   let name = 'Skywalker'
+

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.1. 爬虫获取明星图片 &mdash; MiniFace  文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="4.2. 上传部分明星图片至人员库" href="%E6%89%8B%E5%8A%A8%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%87%B3%E4%BA%BA%E5%91%98%E5%BA%93.html" />
+    <link rel="prev" title="4. 数据的准备与获取" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> MiniFace
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../%E6%96%87%E6%A1%A3/index.html">1. Sphinx的使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E5%85%B3%E4%BA%8E%E9%A1%B9%E7%9B%AE/index.html">2. 关于项目</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AE%97%E6%B3%95%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/index.html">3. 算法理论基础</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. 数据的准备与获取</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.1. 爬虫获取明星图片</a></li>
+<li class="toctree-l2"><a class="reference internal" href="%E6%89%8B%E5%8A%A8%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%87%B3%E4%BA%BA%E5%91%98%E5%BA%93.html">4.2. 上传部分明星图片至人员库</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0/index.html">5. 小程序实现</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MiniFace</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">4. </span>数据的准备与获取</a> &raquo;</li>
+      <li><span class="section-number">4.1. </span>爬虫获取明星图片</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/数据的获取与准备/爬虫获取明星图片.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">4.1. </span>爬虫获取明星图片<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>从明星网爬取明星图片核心代码如下</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="kn">import</span> <span class="nn">os</span>
+<span class="linenos"> 2</span><span class="kn">import</span> <span class="nn">time</span>
+<span class="linenos"> 3</span><span class="kn">import</span> <span class="nn">random</span>
+<span class="linenos"> 4</span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="linenos"> 5</span><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="n">first_num</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="mi">62</span><span class="p">)</span>
+<span class="linenos"> 8</span><span class="n">third_num</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3200</span><span class="p">)</span>
+<span class="linenos"> 9</span><span class="n">fourth_num</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">140</span><span class="p">)</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="n">os_type</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">12</span>    <span class="s1">&#39;(Windows NT 6.1; WOW64)&#39;</span><span class="p">,</span> <span class="s1">&#39;(Windows NT 10.0; WOW64)&#39;</span><span class="p">,</span> <span class="s1">&#39;(X11; Linux x86_64)&#39;</span><span class="p">,</span>
+<span class="linenos">13</span>    <span class="s1">&#39;(Macintosh; Intel Mac OS X 10_12_6)&#39;</span>
+<span class="linenos">14</span><span class="p">]</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="n">chrome_version</span> <span class="o">=</span> <span class="s1">&#39;Chrome/</span><span class="si">{}</span><span class="s1">.0.</span><span class="si">{}</span><span class="s1">.</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">first_num</span><span class="p">,</span> <span class="n">third_num</span><span class="p">,</span> <span class="n">fourth_num</span><span class="p">)</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="k">def</span> <span class="nf">get_ua</span><span class="p">():</span>
+<span class="linenos">20</span>    <span class="k">global</span> <span class="n">os_type</span><span class="p">,</span> <span class="n">chrome_version</span>
+<span class="linenos">21</span>    <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;Mozilla/5.0&#39;</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">os_type</span><span class="p">),</span> <span class="s1">&#39;AppleWebKit/537.36&#39;</span><span class="p">,</span>
+<span class="linenos">22</span>                    <span class="s1">&#39;(KHTML, like Gecko)&#39;</span><span class="p">,</span> <span class="n">chrome_version</span><span class="p">,</span> <span class="s1">&#39;Safari/537.36&#39;</span><span class="p">]</span>
+<span class="linenos">23</span>                    <span class="p">)</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="n">headers_index</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">26</span>    <span class="s2">&quot;Host&quot;</span><span class="p">:</span> <span class="s2">&quot;www.mingxing.com&quot;</span><span class="p">,</span>
+<span class="linenos">27</span><span class="p">}</span>
+<span class="linenos">28</span><span class="n">headers_img</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos">29</span>    <span class="s2">&quot;Referer&quot;</span><span class="p">:</span> <span class="s2">&quot;http://www.mingxing.com/ziliao/index.html&quot;</span><span class="p">,</span>
+<span class="linenos">30</span><span class="p">}</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="n">root</span> <span class="o">=</span> <span class="s1">&#39;stars_face_library_folder&#39;</span>
+<span class="linenos">33</span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+<span class="linenos">34</span>    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="linenos">35</span><span class="n">s</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">session</span><span class="p">()</span>
+<span class="linenos">36</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">194</span><span class="p">):</span>
+<span class="linenos">37</span>    <span class="n">url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;http://www.mingxing.com/ziliao/index?&amp;p=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="linenos">38</span>    <span class="n">headers_index</span><span class="p">[</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_ua</span><span class="p">()</span>
+<span class="linenos">39</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers_index</span><span class="p">)</span>
+<span class="linenos">40</span>    <span class="n">html</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="linenos">41</span>    <span class="n">lis</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//div[@class=&#39;page_starlist&#39;]//li&quot;</span><span class="p">)</span>
+<span class="linenos">42</span>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span>    <span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">lis</span><span class="p">:</span>
+<span class="linenos">45</span>        <span class="n">src</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;.//img/@src&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos">46</span>        <span class="n">name</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;.//a/h3&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="linenos">47</span>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Downloading </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+<span class="linenos">48</span>
+<span class="linenos">49</span>        <span class="n">headers_img</span><span class="p">[</span><span class="s1">&#39;Referer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
+<span class="linenos">50</span>        <span class="n">headers_img</span><span class="p">[</span><span class="s1">&#39;User-Agent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_ua</span><span class="p">()</span>
+<span class="linenos">51</span>        <span class="n">img</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers_img</span><span class="p">)</span>
+<span class="linenos">52</span>        <span class="n">folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="linenos">53</span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">folder</span><span class="p">):</span>
+<span class="linenos">54</span>            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+<span class="linenos">55</span>        <span class="n">file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">.jpg&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+<span class="linenos">56</span>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;ab&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="linenos">57</span>            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<span class="linenos">58</span>        <span class="c1"># time.sleep(0.2)</span>
+<span class="linenos">59</span>        <span class="n">img</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>获取成功后问价如下所示：</p>
+<figure class="align-center" id="id2">
+<img alt="获取成功" src="../_images/110.png" />
+<figcaption>
+<p><span class="caption-text">获取成功</span><a class="headerlink" href="#id2" title="永久链接至图片">¶</a></p>
+</figcaption>
+</figure>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="4. 数据的准备与获取" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="%E6%89%8B%E5%8A%A8%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%87%B3%E4%BA%BA%E5%91%98%E5%BA%93.html" class="btn btn-neutral float-right" title="4.2. 上传部分明星图片至人员库" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, leehongzhong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

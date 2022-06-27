@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.1. 项目思考 &mdash; MiniFace  文档</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="2.2. 项目环境配置" href="%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" />
+    <link rel="prev" title="2. 关于项目" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> MiniFace
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../%E6%96%87%E6%A1%A3/index.html">1. Sphinx的使用</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. 关于项目</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.1. 项目思考</a></li>
+<li class="toctree-l2"><a class="reference internal" href="%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html">2.2. 项目环境配置</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../%E7%AE%97%E6%B3%95%E7%90%86%E8%AE%BA%E5%9F%BA%E7%A1%80/index.html">3. 算法理论基础</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0/index.html">4. 小程序实现</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MiniFace</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html"><span class="section-number">2. </span>关于项目</a> &raquo;</li>
+      <li><span class="section-number">2.1. </span>项目思考</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/关于项目/项目思考.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1><span class="section-number">2.1. </span>项目思考<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>选择小程序的原因是因为小程序是一种新的开放能力，开发者可以快速地开发一个小程序。同时小程序可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</p>
+<p>在开始写代码之前，我们先理一下思路。什么东西放在服务端，什么东西放在客户端？</p>
+<p>从安全角度考虑，我们在腾讯云申请到的API密钥是不能暴漏的，API密钥是生成签名，后端识别请求者的重要令牌，否则别人可以通过抓包去获取我们的ID，从而滥用造成经济上的损失，接下来就是为了识别人脸而上传的图片文件，用户数据十分重要，图片千万不能暴漏。小程序官方也提供了一些如数据库、存储、云函数所相关的能力，我们可以通云开发提供的云函数能力将腾讯的API密钥存放在服务端运行，同样的，也可以使用期所提供的云存储和数据库存放用户的图片及数据。</p>
+<p>从产品开发角度考虑，希望产品运行足够的快，减少客户端与服务器的通讯次数，降低运维压力，增加并发数，同时，也要考虑到后期维护，所以代码尽可能的精简。</p>
+<p>具体思路是这样子的：
+客户端选择完图片，在小程序端调用选择图片API后生成临时Url，然后调用云存储上传API上传图片到云存储，之后由云存储返回一个文件的ID到客户端。
+客户端获取文件上传后的ID，调用云函数，在云函数端去读取云存储的文件，读取其真实的URL地址。
+将获取到的地址在云函数端发送至云端，并返回相应结果或者是错误码。
+最终将返回的Url通过 <strong>wxml</strong> 显示至前端界面。</p>
+<section id="id2">
+<h2><span class="section-number">2.1.1. </span>项目主要功能<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>本项目意在开发一个在计算机视觉领域人脸识别分析的小程序，主要功能包括：</p>
+<ul class="simple">
+<li><p>人脸比对</p></li>
+<li><p>人脸属性分析</p></li>
+<li><p>人脸年龄变化</p></li>
+<li><p>明星脸对比</p></li>
+</ul>
+<p>对于前三个功能，实现的步骤基本与上方具体思路描述的相似，只是接口与模型的不同</p>
+<p>但对于明星脸比对，虽说基于人脸比对实现，但由于API没有返回Url的功能,主要原因是生成Url后返回结果会偶尔超时，所以只能在用户端存储一个Json文件，通过返回的Id区分具体是是哪个明星，最后显示结果</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="2. 关于项目" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.html" class="btn btn-neutral float-right" title="2.2. 项目环境配置" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; 版权所有 2022, leehongzhong.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
